@@ -1,0 +1,195 @@
+<html>
+<head>
+    <title>A Game of War</title>
+    <style>
+        body{
+            background-image: url(100.jpg);
+            background-size: 100%;
+            text-align: center;
+            color: yellow;
+        }
+        .customButtons{
+                border-style: solid;
+                font-style: "impact";
+                color: black;
+                background-color: yellow;
+                width:100px;
+                text-align:center;
+                margin:auto;
+            }
+            .customButtons:hover{
+                background-color: white;
+                color: black;
+            }
+    </style>
+	<script>
+        //Create a global variable to store all the images
+		var cardPic = [];
+        //Create a global variable to track the players score
+		var playerScore = 0;
+        //Create a global variable to track the computers score
+		var computerScore = 0;
+            //This function is called to initialize the card array
+            //This function will fill the array with the images for all 52 cards
+		    function initVariables()
+            {
+                //Create a loop that will fill the array with the 52 file names
+                for(i=0; i<=51; i++){
+                    cardPic.push(i+".jpg");
+                }
+                //Use this console.log to check if array is made correctly
+                console.log(cardPic);
+		    }
+
+            //This function generates a random number from 0-51 to grab 
+            //the corresponding card
+		    function getRandomCardNum(){
+                //Generate a random number from 0-51
+                var randNum= Math.floor(Math.random()*51)+0;
+                //Return the random number
+                console.log(randNum);
+		    }
+
+            //This function is called each time the deal next card button is clicked
+            //It will get each player a new card and compare who won
+            //Then updates and displays the corresponding variables  
+		    function playRound(){
+			    //Create a variable for player card number and assign a random card number
+                    var playerCard = Math.floor(Math.random()*51)+0;
+                    console.log("Player Card Number: "+ playerCard);
+                    document.getElementById("idPlayCard").src= playerCard+".jpg";
+
+                //Create a variable for computer card number and assign a random card number
+                    var computerCard = Math.floor(Math.random()*51)+0;
+                    console.log("Computer Card Number: "+ computerCard);
+                    document.getElementById("idComCard").src= computerCard+".jpg";
+
+                //Create a variable for player card rank and assign it the value of its rank
+                    var playerRank = playerCard % 13;
+                    console.log("Player Card Rank: "+playerRank);
+
+                //Create a variable for computer card rank and assign it the value of its rank
+                    var computerRank = computerCard % 13;
+                    console.log("Computer Card Rank: "+computerRank);
+
+			    // Show card images (update source of image for player and computer)
+
+
+
+			    // Update match score, show appropriate message
+                //Use else-if statements to determine who won
+                if(idDivOutput.innerHTML=="15"){
+                    idDiv.innerHTML="Great job! You won in this round.";
+                    idDivOutput.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDiv1.innerHTML="0";
+                    idDiv2.innerHTML++;
+                    idDivRound.innerHTML++;
+                }
+                else if(idDivOut.innerHTML=="15"){
+                    idDiv.innerHTML="Computer won in this round. <br>Good luck for your next game";
+                    idDivOutput.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDiv1.innerHTML="0";
+                    idDiv3.innerHTML++;
+                    idDivRound.innerHTML++;
+                }
+			    if(playerRank > computerRank){ 
+                    //Check if player Won
+                    idDivOutput.innerHTML++;
+                    idDiv1.innerHTML++;
+                    idDiv.innerHTML="You won in this play.";
+			    }
+			    else if (playerRank < computerRank){ 
+                    //Check if Computer Won 
+                    idDivOut.innerHTML++; 
+                    idDiv1.innerHTML++
+                    idDiv.innerHTML="Computer won in this play.";
+			    }
+			    else{// it's a tie
+                    idDiv1.innerHTML++;
+                    idDiv.innerHTML="You tied with computer.";
+				
+			    }
+                //Update the display to show correct scores
+			
+		    }
+
+            //This function will reset the game when the reset button is clicked
+            //This function will clear the display (remove card images and scores)
+            //reset score to 0 and displayed the updated scores
+		    //function resetGame()
+            //    {
+            //        //Clear the display
+            //        idDiv.innerHTML="";
+            //        //Reset scores to 0
+            //        idDiv1.innerHTML="0";
+            //        idDivOut.innerHTML="0";
+            //        idDivOutput.innerHTML="0";
+            //        //Redisplay new scores
+            //        clearDisplay();
+		    //}
+            function resetGameAll()
+                {
+                    //var pwGuess=prompt("Please enter the password");
+                    //while(pwGuess!=idDivOutput.innerHTML+""+idDiv1.innerHTML+""+idDiv2.innerHTML){
+                    //alert("password wrong! Make sure after you check your password you didn't played");
+
+                    //pwGuess=prompt("Please enter correct password");
+                    //}
+                    //alert("new game");
+                    //Clear the display
+                    idDiv.innerHTML="";
+                     //Reset scores to 0
+                    idDiv1.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDivOutput.innerHTML="0";
+                    idDiv2.innerHTML="0";
+                    idDiv3.innerHTML="0";
+                    idDivRound.innerHTML="0";
+                    //Redisplay new scores
+                    clearDisplay();
+		    }
+                //This function is used to clear the display
+                //It will remove the card images and the match results
+		    function clearDisplay()
+                {
+                //Reset image sources and match result to an empty string
+                document.getElementById("idPlayCard").src="61.jpg";
+                document.getElementById("idComCard").src="60.jpg";
+
+	    	}
+	    </script>
+
+    </head>
+
+
+    <body onload="initVariables()">
+        <form>
+            <h1 id="idName" class="nameGame">♣️ ♦ A Game of War ♠ ♥</h1>
+            <h3 id="idH3" class="directionGame">This is all about luck. Wish your luck and play.<br> Plays will end at score 15.</h3>
+            <hr width="90%">
+            <p class="customButtons" onClick="playRound()">play</p>
+            <p class="customButtons" onClick="resetGameAll()">reset all</p>
+            <hr width="70%">
+	        <img src="61.jpg" id="idPlayCard" width="100">
+            <img src="60.jpg" id="idComCard" width="100">
+            <hr width="70%">
+            <div id="idDiv"></div><br><br>
+            Your score: 
+    	    <div id="idDivOutput">0</div><br>
+            Computer score:
+            <div id="idDivOut">0</div><br>
+            Total Plays:
+            <div id="idDiv1">0</div><br>
+            <hr width="50%">
+            Your point:
+            <div id="idDiv2">0</div><br>
+            Computer point:
+            <div id="idDiv3">0</div><br>
+            Total Round:
+            <div id="idDivRound">0</div>
+            <input type="button" id="idPass" value="something" onClick="passWord()">
+        </form>
+    </body>
+</html>
