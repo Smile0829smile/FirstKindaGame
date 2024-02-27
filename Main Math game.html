@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Math game</title>
+        <style>
+            body{
+                text-align: center;
+                background-image: url(background1.jpg);
+                background-size: 100%;
+            }
+            .center{
+                margin-left: auto;
+                margin-right: auto;
+            }
+            table{
+                border: 5px;
+                border-color: black;
+                border-style: solid;
+            }
+            th{
+                border: 3px;
+                border-color: black;
+                border-style: groove;
+                background-color: lightblue;
+                font-size: x-large;
+            }
+            td{
+                border: 3px;
+                border-color: black;
+                border-style: groove;
+                background-color:yellow ;
+                color: purple;
+                font-size: large;
+            }
+            .customButtons{
+                border-style: solid;
+                font-style: "impact";
+                color: green;
+                background-color: lightgreen;
+                width:100px;
+                text-align:center;
+                margin:auto;
+                font-size: larger;
+            }
+
+            .customButtons:hover{
+                background-color: white;
+                color: black;
+            }
+            .customButton1{
+                border-style: double;
+                font-style: italic;
+                color: purple;
+                background-color: lightblue;
+                width: 50px;
+                text-align: center;
+                margin: auto;
+                font-size: large;
+            }
+            .customButton1:hover{
+                background-color: green;
+                color:yellow;
+            }
+            .customButton2{
+                border-style: double;
+                font-style: italic;
+                color: purple;
+                background-color: lightblue;
+                width: 175px;
+                text-align: center;
+                margin: auto;
+                font-size: large;
+            }
+            .customButton2:hover{
+                background-color: green;
+                color:yellow;
+            }
+            .token{
+                margin-left: 1350px;
+                background-color: white;
+                color: black;
+                width: 75px;
+            }
+            .h1Color{
+                color: purple;
+            }
+            wonky{
+                background-color: azure;
+                color:brown;
+            }
+        </style>
+        <script>
+            var token="MT";
+
+            var money=1;
+
+            var price=1;
+            var price1=3;
+            var price2=6;
+            var price3=12;
+
+            var nameOfButton1="purchase";
+            var numberOfButton=1;
+            var nameOfButton="purchase";
+            var numberOfButton1=2;
+            var nameOfButton2="purchase";
+            var numberOfButton2 =3;
+            var nameOfButton3="purchase";
+            var numberOfButton3 =4;
+
+            var onClicking1="purchaseRound2";
+            var onClicking="purchaseRound";
+            var onClicking2 ="purchaseRound3";
+            var onClicking3 ="purchaseRound4";
+
+            var customButtonClass= "customButton2"
+            var customButtonClass1= "customButton2"
+            var customButtonClass2= "customButton2"
+            var customButtonClass3= "customButton2"
+
+            function firstLoad(){
+                var output="<table class='center'>";
+                    output+="<tr><th>Our first game</th></tr>";
+                    output+="<tr>";
+                        output+="<td> This is our first game website and you can<br>";
+                        output+="play round by round and get one MT(Math token) and buy new rounds<br>";
+                        output+="And if you lost we will mines one MT(Math token).<br>";
+                        output+="Good luck and get all of that rounds.</td></tr>";
+                    output+="</table>";
+
+                idH2.innerHTML=money+token;
+                
+                idDiv.innerHTML= output;
+
+                ranNum();
+            }
+
+            function informationStaff(){
+                var output="<table class='center'";
+                    output+="<tr><th>Game Infotmation</th></tr>";
+                    output+="<tr>";
+                        output+="<td> This game is about your skill and sometimes about luck<br>";
+                        output+="like battle card round. I wish you have fun for playing this.<br></td>";
+                        output+="</tr>";
+                        output+="<tr>";
+                            output+="<td> For feedback or some issues <br>(<wonky>aldarlwccmunkh0829@gmail.com</wonky>).<br>"
+                            output+="<button onclick='myFunction()''>contact</button></td>";
+                            output+="</tr>";
+                        output+="</table>";
+                    idDiv.innerHTML=output;
+
+
+                    idDiv100.innerHTML= "";
+            }
+
+            function myFunction(){
+                window.open("https://mail.google.com/mail/u/0/#inbox?compose=new")
+            }
+
+            function gameMode(){
+                document.body.style.backgroundImage="url(background3.jpg)";
+
+                var output="<table class='center'>";
+                    output+="<tr><th>Game 1</th><th>Game 2</th><th>Game 3</th><th>Game 4</th></tr>"
+                    output+="<tr>";
+                        output+="<td><img src='game1.jpg' width=200 height=150><br><h1>Guess Number</h1><br>";
+                        output+="<div id='idDivP1'></div>";
+                        output+="<div id='idPriceShw1'>Price: "+price+token+"</div>";
+                        output+="</td>";
+                        output+="<td><img src='game2.jpg' width=200 height=150><br><h1>  Card Battle  </h1><br>";
+                        output+="<div id='idDivP2'></div>";
+                        output+="<div id='idPriceShw2'>Price: "+price1+token+"</div>";
+                        output+="</td>";
+                        output+="<td><img src='game3.jpg' width=200 height=150><br><h1>  Guess Logo  </h1><br>";
+                        output+="<div id='idDivP3'></div>";
+                        output+="<div id='idPriceShw3'>Price: "+price2+token+"</div>";
+                        output+="</td>";
+                        output+="<td><img src='game4.jpg' width=200 height=150><br><h1>  Guess Logo  </h1><br>";
+                        output+="<div id='idDivP4'></div>";
+                        output+="<div id='idPriceShw3'>Price: "+price3+token+"</div>";
+                        output+="</td>";
+                    output+="</tr>";
+                    output+="</table>";
+
+                var input="<button id='idButton"+numberOfButton+"' class='"+customButtonClass+"' onClick='"+onClicking+"()'>"+nameOfButton+"</button>";
+                var input1="<button id='idButton"+numberOfButton1+"' class='"+customButtonClass1+"' onClick='"+onClicking1+"()'>"+nameOfButton1+"</button>";
+                var input2="<button id='idButton"+numberOfButton2+"' class='"+customButtonClass2+"' onClick='"+onClicking2+"()'>"+nameOfButton2+"</button>";
+                var input3="<button id='idButton"+numberOfButton3+"' class='"+customButtonClass3+"' onClick='"+onClicking3+"()'>"+nameOfButton3+"</button>";
+                
+                idDiv.innerHTML=output;
+                //card game
+                idDivP2.innerHTML=input1;
+                //guess number game
+                idDivP1.innerHTML=input;
+                //guess logo game
+                idDivP3.innerHTML= input2;
+                //guess the flag game
+                idDivP4.innerHTML= input3;
+
+
+
+
+                idDiv100.innerHTML= "";
+
+                
+            }
+            
+            function purchaseRound(){
+                if(money==price){
+                    var token1= money-price
+                    money=token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessNum()'>Play</button>"
+                    idH2.innerHTML= token1+"MT";
+                    idDivP1.innerHTML=output;
+                    idPriceShw1.innerHTML="";
+                    numberOfButton1=3;
+                    nameOfButton="Play"
+                    onClicking="guessNum"
+                    customButtonClass="customButton1"
+                    alert("You bought first round good luck for your game!");
+                }
+                else if(money>price){
+                    var token1= money-price
+                    money=token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessNum()'>Play</button>"
+                    idH2.innerHTML= token1+"MT";
+                    idDivP1.innerHTML=output;
+                    idPriceShw1.innerHTML="";
+                    numberOfButton1=3;
+                    nameOfButton="Play"
+                    onClicking="guessNum"
+                    customButtonClass="customButton1"
+                    alert("You bought first round good luck for your game!");
+                }
+                else{
+                    alert("Your MT is not enough please get more MT by playing purchased rounds :)");
+                }
+            }
+
+            function purchaseRound2(){
+                if(price1==money){
+                    var token1= money-price1;
+                    money=token1
+                    var output="<button id='idButton3' class='customButton1' onClick='cardBattle()'>Play</button>"
+                    idH2.innerHTML= token1+"MT";
+                    idDivP2.innerHTML=output;
+                    idPriceShw2.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton1= "Play";
+                    onClicking1= "cardBattle"
+                    customButtonClass1="customButton1"
+                    alert("You bought second round good luck for your game.");
+                }
+                else if(money>price1){
+                    var token1= money-price1;
+                    money=token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='cardBattle()'>Play</button>"
+                    idH2.innerHTML= token1+"MT";
+                    idDivP2.innerHTML=output;
+                    idPriceShw2.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton1= "Play";
+                    onClicking1="cardBattle";
+                    customButtonClass1="customButton1"
+                    alert("You bought second round good luck for your game!");
+                }
+                else{
+                    alert("Your MT is not enough please get more MT by playing purchased rounds :)");
+                }
+            }
+
+            function purchaseRound3(){
+                if(price2== money){
+                    var token1= money-price2;
+                    money = token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessLogo()'>Play</button>";
+                    idH2.innerHTML= token1+"MT";
+                    idDivP3.innerHTML= output;
+                    idPriceShw3.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton2="Play";
+                    onClicking2 = "guessLogo";
+                    customButtonClass2="customButton1";
+                    alert("You bought Round 3. Let's check how good you on Guessing Logo. ;)");
+                }
+                else if(money > price2){
+                    var token1= money-price2;
+                    money = token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessLogo()'>Play</button>";
+                    idH2.innerHTML= token1+"MT";
+                    idDivP3.innerHTML= output;
+                    idPriceShw3.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton2="Play";
+                    onClicking2 = "guessLogo";
+                    customButtonClass2="customButton1";
+                    alert("You bought Round 3. Let's check how good you on Guessing Logo. ;)");
+                }
+                else{
+                    alert("Your MT is not enough please get more MT by playing purchased rounds :)");
+                }
+            }
+            function purchaseRound4(){
+                if(price3== money){
+                    var token1= money-price3;
+                    money = token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessFlag1()'>Play</button>";
+                    idH2.innerHTML= token1+"MT";
+                    idDivP4.innerHTML= output;
+                    idPriceShw3.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton3="Play";
+                    onClicking2 = "guessFlag1";
+                    customButtonClass2="customButton1";
+                    alert("You bought Round 4. You are doing great keep it up. (<^_^>)");
+                }
+                else if(money > price3){
+                    var token1= money-price3;
+                    money = token1;
+                    var output="<button id='idButton3' class='customButton1' onClick='guessFlag1()'>Play</button>";
+                    idH2.innerHTML= token1+"MT";
+                    idDivP4.innerHTML= output;
+                    idPriceShw3.innerHTML="";
+                    numberOfButton=3;
+                    nameOfButton2="Play";
+                    onClicking2 = "guessFlag1";
+                    customButtonClass2="customButton1";
+                    alert("You bought Round 4. You are doing great keep it up. (<^_^>)");
+                }
+                else{
+                    alert("Your MT is not enough please get more MT by playing purchased rounds :)");
+                }
+            }
+
+
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+            //This is Battle Game Our second game of this website lol
+            //Second start from here
+            //here
+            function cardBattle(){
+                output="<h1 id='idName' class='nameGame'> A Game of War </h1>"
+            output+="<h3 id='idH3' class='directionGame'>This is all about luck. Wish your luck and play.<br> Plays will end at score 15.<br> If you win you will get 2MT <br>If you lose mines 1MT</h3>"
+            output+="<hr width='90%'>"
+            output+="<p class='customButtons' onClick='playRound()'>play</p>"
+            output+="<p class='customButtons' onClick='resetGameAll()'>reset all</p>"
+            output+="<hr width='70%'>"
+	        output+="<img src='61.jpg' id='idPlayCard' width='100' lenght='200'>"
+            output+="<img src='60.jpg' id='idComCard' width='100' lenght='200'>"
+            output+="<hr width='70%'>"
+            output+="<div id='idDiv10'></div><br><br>"
+            output+="Your score: "
+    	    output+="<div id='idDivOutput'>0</div><br>"
+            output+="Computer score:"
+            output+="<div id='idDivOut'>0</div><br>"
+            output+="Total Plays:"
+            output+="<div id='idDiv1'>0</div><br>"
+            output+="<hr width='50%'>"
+            output+="Your point:"
+            output+="<div id='idDiv2'>0</div><br>"
+            output+="Computer point:"
+            output+="<div id='idDiv3'>0</div><br>"
+            output+="Total Round:"
+            output+="<div id='idDivRound'>0</div>"
+
+            idDiv.innerHTML= output;
+            }
+
+            //Create a global variable to store all the images
+		var cardPic = [];
+        //Create a global variable to track the players score
+		var playerScore = 0;
+        //Create a global variable to track the computers score
+		var computerScore = 0;
+            //This function is called to initialize the card array
+            //This function will fill the array with the images for all 52 cards
+		    function initVariables()
+            {
+                //Create a loop that will fill the array with the 52 file names
+                for(i=0; i<=51; i++){
+                    cardPic.push(i+".jpg");
+                }
+                //Use this console.log to check if array is made correctly
+                console.log(cardPic);
+		    }
+
+            //This function generates a random number from 0-51 to grab 
+            //the corresponding card
+		    function getRandomCardNum(){
+                //Generate a random number from 0-51
+                var randNum= Math.floor(Math.random()*51)+0;
+                //Return the random number
+                console.log(randNum);
+		    }
+
+            //This function is called each time the deal next card button is clicked
+            //It will get each player a new card and compare who won
+            //Then updates and displays the corresponding variables  
+		    function playRound(){
+			    //Create a variable for player card number and assign a random card number
+                    var playerCard = Math.floor(Math.random()*51)+0;
+                    console.log("Player Card Number: "+ playerCard);
+                    document.getElementById("idPlayCard").src= playerCard+".jpg";
+
+                //Create a variable for computer card number and assign a random card number
+                    var computerCard = Math.floor(Math.random()*51)+0;
+                    console.log("Computer Card Number: "+ computerCard);
+                    document.getElementById("idComCard").src= computerCard+".jpg";
+
+                //Create a variable for player card rank and assign it the value of its rank
+                    var playerRank = playerCard % 13;
+                    console.log("Player Card Rank: "+playerRank);
+
+                //Create a variable for computer card rank and assign it the value of its rank
+                    var computerRank = computerCard % 13;
+                    console.log("Computer Card Rank: "+computerRank);
+
+			    // Show card images (update source of image for player and computer)
+
+
+
+			    // Update match score, show appropriate message
+                //Use else-if statements to determine who won
+                if(idDivOutput.innerHTML=="15"){
+                    idDiv10.innerHTML="Great job! You won in this round.";
+                    idDivOutput.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDiv1.innerHTML="0";
+                    idDiv2.innerHTML++;
+                    idDivRound.innerHTML++;
+                    var mungu=money+2;
+                    idH2.innerHTML= mungu;
+                    money= mungu;
+                }
+                else if(idDivOut.innerHTML=="15"){
+                    idDiv10.innerHTML="Computer won in this round. <br>Good luck for your next game";
+                    idDivOutput.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDiv1.innerHTML="0";
+                    idDiv3.innerHTML++;
+                    idDivRound.innerHTML++;
+                    var lol=money-1;
+                    idH2.innerHTML= lol;
+                    money= lol
+                }
+			    if(playerRank > computerRank){ 
+                    //Check if player Won
+                    idDivOutput.innerHTML++;
+                    idDiv1.innerHTML++;
+                    idDiv10.innerHTML="You won in this play.";
+                    
+			    }
+			    else if (playerRank < computerRank){ 
+                    //Check if Computer Won 
+                    idDivOut.innerHTML++; 
+                    idDiv1.innerHTML++
+                    idDiv10.innerHTML="Computer won in this play.";
+                    
+			    }
+			    else{// it's a tie
+                    idDiv1.innerHTML++;
+                    idDiv10.innerHTML="You tied with computer.";
+                    //var nab=money-2;
+                    //idDiv.innerHTML= nab;
+                    //money= nab;
+			    }
+                //Update the display to show correct scores
+			
+		    }
+
+            //This function will reset the game when the reset button is clicked
+            //This function will clear the display (remove card images and scores)
+            //reset score to 0 and displayed the updated scores
+		    //function resetGame()
+            //    {
+            //        //Clear the display
+            //        idDiv.innerHTML="";
+            //        //Reset scores to 0
+            //        idDiv1.innerHTML="0";
+            //        idDivOut.innerHTML="0";
+            //        idDivOutput.innerHTML="0";
+            //        //Redisplay new scores
+            //        clearDisplay();
+		    //}
+            function resetGameAll()
+                {
+                    //var pwGuess=prompt("Please enter the password");
+                    //while(pwGuess!=idDivOutput.innerHTML+""+idDiv1.innerHTML+""+idDiv2.innerHTML){
+                    //alert("password wrong! Make sure after you check your password you didn't played");
+
+                    //pwGuess=prompt("Please enter correct password");
+                    //}
+                    //alert("new game");
+                    //Clear the display
+                    idDiv10.innerHTML="";
+                     //Reset scores to 0
+                    idDiv1.innerHTML="0";
+                    idDivOut.innerHTML="0";
+                    idDivOutput.innerHTML="0";
+                    idDiv2.innerHTML="0";
+                    idDiv3.innerHTML="0";
+                    idDivRound.innerHTML="0";
+                    //Redisplay new scores
+                    clearDisplay();
+		    }
+                //This function is used to clear the display
+                //It will remove the card images and the match results
+		    function clearDisplay()
+                {
+                //Reset image sources and match result to an empty string
+                document.getElementById("idPlayCard").src="61.jpg";
+                document.getElementById("idComCard").src="60.jpg";
+
+	    	}
+
+
+            //////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
+            //This is first game guess number
+            //See
+            //Here lol
+            var secretNumber=  Math.floor(Math.random()*50)+1;
+
+            function guessNum(){
+                idDiv.innerHTML="";
+                
+                var output= "<h1 id='idH1' class='h1Color' >random number guesser</h1>"
+                    output+="<hr width='70%'>"
+                    output+="<h2 id='idH21' >In this game the computer got a number 1-50 for you to guess<br>and you need to guess that number. You have 6 try. <br>GOOD LUCK</h2>"
+                    output+="<p class='customBut' id='idOk' onClick='allRight()'></p><br>"
+                    output+="<input type='text' id='idTxtBox' placeholder='Enter your number'><br><br>"
+                    output+="<p class='customButtons' id='idGuess' onClick='guessToo()'>Check Guess</p><br>"
+                    output+="<p class='customButtons' id='idReset' onClick='resetGame()'>Reset</p><br>"
+                    output+="<p class='customButtons' id='idReset' onClick='resetAll()'>Reset All</p><br>"
+                    output+="<h2>GET HINT WILL TAKE <br>2MT FROM YOU FOR USE IT</h2><br>"
+                    output+="<p class='customButtons' id='idHint' onClick='getHint()'>Get Hint</p>"
+                    output+="<hr width='50%'>"
+                    output+="<h3 >Number of guesses left:</h3>"
+                    output+="<h3 id='idP1'>6</h3>"
+                    output+="<h3>Number of your wins:</h3>"
+                    output+="<h3 id='idP2'>0</h3>"
+                    output+="<h3>Number of computer wins:</h3>"
+                    output+="<h3 id='idP3'>0</h3>"
+                    output+="<h3>Total Round:</h3>"
+                    output+="<h3 id='idP4'>0</h3>"
+                    output+="<h3>High user's wins:</h3>"
+                    output+="<h3 id='idP5'>0</h3>"
+                
+                idDiv.innerHTML= output;
+            }
+
+            function generateNum(){
+                secretNumber = Math.floor(Math.random()*50)+1;
+            }
+
+
+            function guessToo(){
+                var number= Number(idTxtBox.value);
+
+                if(secretNumber==number){
+                    var correct= "It's correct great work<br> we added one MT for you :)";
+                    idH21.innerHTML= correct;
+                    secretNumber=Math.floor(Math.random()*50)+1;
+                    idP1.innerHTML="6"
+                    idP2.innerHTML++;
+                    idP4.innerHTML++;
+                    var mungu =money+1;
+                    money = mungu;
+                    idH2.innerHTML= mungu+token;
+                }
+                else if(secretNumber<=number){
+                    var big= "Secret number is smaller than "+number;
+                    idH21.innerHTML= big;
+                    idP1.innerHTML--;
+                }
+                else{
+                    idP1.innerHTML--;
+                    var small= "Secret number is bigger than "+number;
+                    idH21.innerHTML= small;
+                }
+                if(number>="51"){
+                    document.body.style.backgroundColor="red";
+                    var much="Please enter number that smaller than or equal to 50 ";
+                    idH21.innerHTML= much;
+                    idOk.innerHTML="Ok";
+                }
+                //This will put random number and 
+                if(idP1.innerHTML=="0"){
+                    var zero="You lost, computer won this round.<br> The secret number was "+secretNumber+ "<br> <wonky>WE WILL MINES ONE (MT) FROM YOU</wonky><br>Good luck for your next round";
+                    zero+="<br><br>Reminder you have 6 try to guess <br>secret number that between 1-50."
+                    idH21.innerHTML= zero;
+                    idP3.innerHTML++;
+                    idP4.innerHTML++;
+                    idP1.innerHTML="6";
+                    secretNumber=Math.floor(Math.random()*50)+1;
+                    var lost= money-1;
+                    money = lost;
+                    idH2.innerHTML= lost+token;
+                }
+                //Your high score 
+                if(idP5.innerHTML){
+                    idP5.innerHTML=idP2.innerHTML;
+                }
+            }
+            //This function gonna reset game except high score
+            function resetGame(){
+                idP1.innerHTML="6";
+                idP2.innerHTML="0";
+                idP3.innerHTML="0";
+                idP4.innerHTML="0";
+                idH21.innerHTML="In this game the computer got a number 1-50 for you to guess<br>and you need to guess that number. You have 6 try. <br>GOOD LUCK"
+                document.getElementById("idTxtBox").value="";
+            }
+            //This function gonna give you hint
+            function getHint(){
+                var min= secretNumber-Math.floor(Math.random()*4);
+                var max= secretNumber+Math.floor(Math.random()*5);
+                alert("The secret number is between "+ min+"and"+max+".");
+                var bill = money-2;
+                money= bill;
+                idH2.innerHTML= bill+token;
+            }
+            //This will resert all 
+            function resetAll(){
+                idP1.innerHTML="6";
+                idP2.innerHTML="0";
+                idP3.innerHTML="0";
+                idP4.innerHTML="0";
+                idH21.innerHTML="In this game the computer got a number 1-50 for you to guess<br>and you need to guess that number. You have 6 try. <br>GOOD LUCK"
+                document.getElementById("idTxtBox").value="";
+                document.body.style.backgroundColor="black";
+                document.body.style.color="white";
+                idOk.innerHTML="";
+                idP5.innerHTML="0";
+            }
+            ///////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////
+            
+            var correct = 0;
+            var wrong = 0;
+            var secretNumber2;
+
+
+            function ranNum(){
+                secretNumber2 = Math.floor(Math.random()*25)+1;
+            }
+
+
+            function guessLogo(){
+                var output="<h2>Guess logo</h2>"
+                    output+="<h3>What  is this?</h3>"
+                    output+="<img src=a"+secretNumber2+".jpg width='200' height='200'>";
+                    output+="<div id='idDiv21'></div><br><br>"
+                    output+="<h3 id='idH3'></h3>"
+                    output+="<div id='idDiv300'>Correct Answer</div>";
+                    output+="<div id='idDiv302'>"+correct+"</div>"
+                    output+="<div id='idDiv301'>Wrong Answer</div>"
+                    output+="<div id='idDiv303'>"+wrong+"</div><br><br>"
+
+                    idDiv.innerHTML= output;
+
+                    checkAnswer();
+            }
+
+
+            function checkAnswer(){
+                if(secretNumber2== 1){
+                    var output= "<input type='button' id='idBtnQ1' value='Samsung' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Apple' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='iPhone' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 2){
+                    var output= "<input type='button' id='idBtnQ1' value='Microsoft' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Minecraft' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Tesla' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 3){
+                    var output= "<input type='button' id='idBtnQ1' value='Circus' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Olympics' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='iBike' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 4){
+                    var output= "<input type='button' id='idBtnQ1' value='Horse' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Bugatti' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Ferrari' onClick='correctAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 5){
+                    var output= "<input type='button' id='idBtnQ1' value='Toyota' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Tesla' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Bugatti' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 6){
+                    var output= "<input type='button' id='idBtnQ1' value='Coke' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Pepsi' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Panta' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 7){
+                    var output= "<input type='button' id='idBtnQ1' value='Blockman Go' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Dota' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Mobile Legends' onClick='correctAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 8){
+                    var output= "<input type='button' id='idBtnQ1' value='Roblox' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='TikTok' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Square' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 9){
+                    var output= "<input type='button' id='idBtnQ1' value='Roblox' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Minecraft' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Blockman go' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 10){
+                    var output= "<input type='button' id='idBtnQ1' value='Red Robin' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Youtube' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Facebook' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 11){
+                    var output= "<input type='button' id='idBtnQ1' value='Adidas' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Puma' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Nike' onClick='correctAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 12){
+                    var output= "<input type='button' id='idBtnQ1' value='Adidas' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Puma' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Addidas' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 13){
+                    var output= "<input type='button' id='idBtnQ1' value='Iral Madrid' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Real Madrid' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Barcelona' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 14){
+                    var output= "<input type='button' id='idBtnQ1' value='Tesla' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Adidas' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Toyota' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 15){
+                    var output= "<input type='button' id='idBtnQ1' value='Twitter' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Space X' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Tesla model X' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 16){
+                    var output= "<input type='button' id='idBtnQ1' value='Colored flag' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Six Flag' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Some Flag' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 17){
+                    var output= "<input type='button' id='idBtnQ1' value='Apple' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Robot' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Android' onClick='correctAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 18){
+                    var output= "<input type='button' id='idBtnQ1' value='Motorolla' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='iPhone' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Samsung' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 19){
+                    var output= "<input type='button' id='idBtnQ1' value='Facebook' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Snapchat' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Ghost' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 20){
+                    var output= "<input type='button' id='idBtnQ1' value='Square Box' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Instgram' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='TikTok' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 21){
+                    var output= "<input type='button' id='idBtnQ1' value='Facebook' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Blue F' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Bly Sky' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 22){
+                    var output= "<input type='button' id='idBtnQ1' value='Google Chrome' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Google Play' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Google' onClick='correctAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 23){
+                    var output= "<input type='button' id='idBtnQ1' value='Spotify' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='SoundCloud' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Apple Music' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 24){
+                    var output= "<input type='button' id='idBtnQ1' value='Roblox' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='TikTok' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Purple Bluetooth' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 25){
+                    var output= "<input type='button' id='idBtnQ1' value='Ger' onClick='wrongAnswer()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Yamaha' onClick='correctAnswer()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Journe' onClick='wrongAnswer()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+            }
+
+            function wrongAnswer(){
+                var output=wrong+1;
+                wrong=output;
+                idDiv303.innerHTML= wrong;
+                secretNumber2 = Math.floor(Math.random()*25)+1;
+                money= money-1;
+                idDiv100.innerHTML= "Wrong, Nice try tho ^_^"
+                idH2.innerHTML= money+"MT";
+                guessLogo();
+            }
+
+            function correctAnswer(){
+                var output=correct+1;
+                correct=output;
+                idDiv302.innerHTML= correct;
+                money=money+0.5;
+                idH2.innerHTML=money+"MT";
+                idDiv100.innerHTML= "Correct, Great job :)";
+                secretNumber2 = Math.floor(Math.random()*25)+1;
+                guessLogo();
+            }
+
+            //////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////
+
+            function guessFlag1(){
+                var output="<h2>Guess Flag</h2>"
+                    output+="<h3>What country is this?</h3>"
+                    output+="<img src=f"+secretNumber2+".jpg width='300' height='200'>";
+                    output+="<div id='idDiv21'></div><br><br>"
+                    output+="<div id='idDiv300'>Correct Answer</div>";
+                    output+="<div id='idDiv302'>"+correct+"</div>"
+                    output+="<div id='idDiv301'>Wrong Answer</div>"
+                    output+="<div id='idDiv303'>"+wrong+"</div><br><br>"
+
+                    idDiv.innerHTML= output;
+
+                    checkAnswer1();
+            }
+
+            function checkAnswer1(){
+                if(secretNumber2== 1){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Mongolia' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Hungary' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='China' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 2){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='South Korea' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Japan' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Russia' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 3){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Ohio' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Australia' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='United States' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 4){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Italy' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='France' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Russia' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 5){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='France' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Netherlands' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Russia' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 6){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Hungary' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Sweden' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Italy' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 7){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Spain' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Sweden' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Germany' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 8){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Vietnam' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Chine' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Chile' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 9){
+                    var output="";
+                    output+="<input type='button' id='idBtnQ1' value='Brazil' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Chile' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Argentina' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 10){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Australia' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Austria' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='New Zealand' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 11){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Austria' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='New Zealand' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Australia' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 12){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='England' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='United Kingdom' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Spain' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 13){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='France' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='England' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='United Kingdom' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 14){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Belguim' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Spain' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Germany' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 15){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='North Korea' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='South Korea' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Japan' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 16){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Vietnam' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='North Korea' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='South Korea' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 17){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Italy' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Mexico' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Canada' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 18){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Sweden' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Chile' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Canada' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 19){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Kazakhstan' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Kyrgyzstan' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Tunisia' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 20){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Vietnam' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Philippines' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Indonesia' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 21){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Nepal' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Vietnam' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Chile' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+                if(secretNumber2== 22){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='China' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Nepal' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Taiwan' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 23){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Australia' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Austria' onClick='correctAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Hungary' onClick='wrongAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 24){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Russa' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='France' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Netherlands' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }if(secretNumber2== 25){
+                    var output="";
+                    output+= "<input type='button' id='idBtnQ1' value='Sweden' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ2' value='Norway' onClick='wrongAnswer1()'>";
+                    output+="<input type='button' id='idBtnQ1' value='Iceland' onClick='correctAnswer1()'>"
+                    
+
+                    idDiv21.innerHTML= output;
+                }
+            }
+
+            function wrongAnswer1(){
+                var output=wrong+1;
+                wrong=output;
+                idDiv303.innerHTML= wrong;
+                secretNumber2 = Math.floor(Math.random()*25)+1;
+                money= money-2;
+                idH2.innerHTML= money+"MT";
+                idDiv100.innerHTML= "Wrong, Nice try tho ^_^";
+                guessFlag1();
+            }
+
+            function correctAnswer1(){
+                var output=correct+1;
+                correct=output;
+                idDiv302.innerHTML= correct;
+                money=money+1;
+                idH2.innerHTML=money+"MT";
+                var input="Correct, Great job :)";
+                idDiv100.innerHTML= input;
+                secretNumber2 = Math.floor(Math.random()*25)+1;
+                guessFlag1();
+            }
+
+
+        </script>
+    </head>
+
+    <body onLoad="firstLoad()">
+            <h2 class="token" id="idH2"></h2>
+            <button id="idButton" class="customButtons" onClick="gameMode()">Games</button>
+            <button id="idButton1" class="customButtons" onClick="informationStaff()">Info</button>
+            <br><br>
+            <div id="idDiv"></div>
+            <div id="idDiv100"></div>
+    </body>
+</html>
